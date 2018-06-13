@@ -1,0 +1,70 @@
+{% extends 'movie/base.html' %}
+{% block title %}Download Free Movies || Hollywood{% endblock %}
+{% block holly_active %}btn-def{% endblock %}
+
+{% block body %}
+{% for movie in all_movie %}
+<div class="container">
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-success">
+            <div class="panel-heading"><b>{{movie.holly.movie_name}} ({{movie.holly.movie_year}})</b></div>
+            <div class="panel-body">
+                        <a href="{% url 'movie:holly_detail' movie.id %}">
+                            <img src="{{ movie.holly.movie_logo.url}}" class="img-responsive" style="height: 300px; width: 500px;">
+                        </a>
+                        <div class="caption">
+                        <a href="{% url 'movie:holly_detail' movie.id %}">
+                            <h2 style="color: #FFF;" class="btn btn-success btn-round-lg btn-md pull-right">Download</h2>
+                        </a>
+                         </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
+</div>
+
+<nav aria-label="Page navigation">   <ul class="pagination pull-right">
+
+{% if page_obj.has_previous %}
+<li class="page-item">
+  <a class="page-link" href="?page=1" aria-label="Previous">
+    <span aria-hidden="true">1st</span>
+    <span class="sr-only">begin</span>
+  </a>
+</li>   {% endif %}
+
+{% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+{% else %}
+{% endif %}
+
+{% for n in page_obj.paginator.page_range %}
+  {% if page_obj.number == n %}
+    <li class="page-item active">
+      <span class="page-link">{{ n }}<span class="sr-only">(current)</span></span>
+    </li>
+  {% elif n > page_obj.number|add:'-2' and n < page_obj.number|add:'2' %}
+    <li class="page-item"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
+  {% endif %}
+{% endfor %}
+
+{% if page_obj.has_next %}
+    <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+{% else %}
+{% endif %}
+{% if page_obj.has_next %}
+  <li class="page-item">
+    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Next">
+      <span aria-hidden="true">Last</span>
+      <span class="sr-only">end</span>
+    </a>
+  </li>
+  {% endif %}   </ul>
+</nav>
+
+{% endblock %}
+
+
+

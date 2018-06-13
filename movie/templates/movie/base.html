@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Torrentz4u || Hollywood {% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse  navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+            <a class="navbar-brand" href="{% url 'movie:index' %}" style="color :#fff;">Torrentz4u</a>
+        </div>
+        <div class="collapse navbar-collapse" id="topNavBar">
+
+            <div class="row" style="margin-top: 0.5%">
+                <div class="col-sm-4">
+    		        <div class="form-group">
+                        <form method="get" role="search" id="searchform"  action="{% url 'movie:search'%}">
+                        <div class="icon-addon addon-sm">
+                            <input type="text" placeholder="Search Titles or by Year" name="q" value="{{ request.GET.q }}" class="form-control" id="search">
+                            <label for="search" class="glyphicon glyphicon-search" rel="tooltip" title="search"></label>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            <ul class="nav navbar-nav navbar-right" style="padding-right: 2%" >
+                <li class="{% block index_active %}{% endblock %}"><a href="{% url 'movie:index' %}" class="btn btn-current btn-round-lg btn-lg">Home</a></li>
+                <li class="{% block holly_active %}{% endblock %}"><a href="{% url 'movie:hollywood' %}" class="btn btn-current btn-round-lg btn-lg">Hollywood</a></li>
+                <li class="{% block bolly_active %}{% endblock %}"><a href="{% url 'movie:bollywood' %}" class="btn btn-current btn-round-lg btn-lg">Bollywood</a></li>
+                <li class="{% block series_active %}{% endblock %}"><a href="{% url 'movie:series' %}" class="btn btn-current btn-round-lg btn-lg">Series</a></li>
+            </ul>
+		    </div>
+        </div>
+</div>
+</nav>
+
+{% block body %}
+{% endblock %}
+
+<br><br><br><br><br><br><br><br>
+<div class="container-fluid navbar-fixed-bottom" style="background:#0e2f44; margin-top: 0px;">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <h5 style="color:#fff;"> Copyright &copy; <a href="{% url 'movie:index' %}" style="color:#fff;">Torrentz4u.com</a>
+    2017 | <a href="#"style="color:#fff;" target="_blank">Facebook</a> | <a href="{% url 'movie:contact' %}"style="color:#fff;">Contact Us</a> </h5>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

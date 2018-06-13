@@ -1,0 +1,44 @@
+{% extends 'movie/base.html' %}
+{% block title %}Search{% endblock %}
+
+{% block body %}
+{% if all_movie %}
+{% for movie in all_movie %}
+<div class="container">
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-success">
+            <div class="panel-heading"><b>{{movie.movie_name}} ({{movie.movie_year}})</b></div>
+            <div class="panel-body">
+                        <a href="{% url 'movie:detail' movie.id %}">
+                            <img src="{{ movie.movie_logo.url}}" class="img-responsive" style="height: 300px; width: 500px;">
+                        </a>
+                        <div class="caption">
+                        <a href="{% url 'movie:detail' movie.id %}">
+                            <h2 style="color: #FFF;" class="btn btn-success btn-round-lg btn-md pull-right">Download</h2>
+                        </a>
+                         </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% else %}
+<br><br><br><br><br><br><br><br><br>
+<div class="container">
+    <div class="row">
+        <center>
+        <div class="col-md-2"></div>
+        <div class="col-md-7">
+            <div class="panel panel-default" style="background:#00BFFF;">
+                <div class="panel-body">
+                     <h1 style="color:#fff;">Nothing Found ! Please Search again...</h1>
+                </div>
+            </div>
+        </div>
+        </center>
+    </div>
+ </div>
+{% endif %}
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'movie/base.html' %}
+{% block title %}{{ movie }}{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="{% url 'movie:detail' movie.id %}">
+                        {% if movie.movie_logo %}
+                            <img src="{{ movie.movie_logo.url}}" class="img-responsive">
+                        {% else %}
+                            <h3>No image to display</h3>
+                        {% endif %}
+                    </a>
+                    <h2 style="color: #000;">{{ movie.movie_name }}({{movie.movie_year}})</h2><hr>
+                    <h3 style="color: #FFF;" class="btn btn-def btn-round-lg btn-sm"><b>Description:</b></h3>
+                    <p>{{movie.description}}</p>
+                    <h3 style="color: #FFF;" class="btn btn-def btn-round-lg btn-sm"><b>Cast:</b></h3>
+                    <p>{{movie.cast}}</p>
+                    <h3 style="color: #FFF;" class="btn btn-def btn-round-lg btn-sm"><b>IMDb Rating:</b></h3>
+                    <p>{{movie.movie_rating}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8 col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr class="warning">
+                                <th>File Type</th>
+                                <th>Download</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for torrent in movie.torrents_set.all %}
+                                <tr>
+                                    <td><br><b>{{torrent.file_type}}</b></td>
+                                    <td><h3 src="{{torrent.torrent_Link}}"></h3>
+                                        <a href="{{torrent.torrent_Link.url}}" style="color: #FFF;" class="btn btn-success btn-round-lg btn-xs">{{torrent.torrent_size}}</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" width="854" height="480" src="{{movie.youTrailer_link}}" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
