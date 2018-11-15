@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class Movies(models.Model):
     movie_name = models.CharField(max_length=250)
     movie_year = models.CharField(max_length=4)
@@ -17,9 +18,9 @@ class Movies(models.Model):
     def __str__(self):
         return self.movie_name + ' - ' + self.movie_year
 
-
     class Meta:
         ordering = ["-created", "-update"]
+
 
 class Hollywood(models.Model):
     holly = models.ForeignKey(Movies, on_delete=models.CASCADE)
@@ -48,6 +49,7 @@ class Bollywood(models.Model):
     class Meta:
         ordering = ["-created", "-update"]
 
+
 class Series(models.Model):
     series = models.ForeignKey(Movies, on_delete=models.CASCADE)
     category = models.CharField(max_length=500)
@@ -75,3 +77,5 @@ class Torrents(models.Model):
         return self.file_type
 
 
+#usenamer "aleem607"
+#password "mynameisaleemmalik"

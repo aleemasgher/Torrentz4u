@@ -10,9 +10,11 @@ class IndexView(generic.ListView):
     model = Movies
     template_name = 'movie/index.html'
 
+
 def detail(request, movie_id):
     movie = get_object_or_404(Movies, pk=movie_id)
     return render(request, 'movie/detail.html', {'movie': movie})
+
 
 class Holly(generic.ListView):
     model = Hollywood
@@ -21,9 +23,11 @@ class Holly(generic.ListView):
     paginate_by = 2
     queryset = Hollywood.objects.all()
 
+
 def HollyDetail(request, movie_id):
     movie = get_object_or_404(Hollywood, pk=movie_id)
     return render(request, 'movie/holly_detail.html', {'movie': movie})
+
 
 class Bolly(generic.ListView):
     model = Hollywood
@@ -31,6 +35,7 @@ class Bolly(generic.ListView):
     context_object_name = 'all_movie'
     paginate_by = 2
     queryset = Bollywood.objects.all()
+
 
 def BollyDetail(request, movie_id):
     movie = get_object_or_404(Bollywood, pk=movie_id)
@@ -43,12 +48,15 @@ class Seriess(generic.ListView):
     paginate_by = 2
     queryset = Series.objects.all()
 
+
 def SeriesDetail(request, movie_id):
     movie = get_object_or_404(Series, pk=movie_id)
     return render(request, 'movie/series_detail.html', {'movie': movie})
 
+
 def contactview(request):
     return render(request, 'movie/contact.html')
+
 
 class SearchListView(generic.ListView):
     model = Movies
