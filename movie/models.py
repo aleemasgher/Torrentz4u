@@ -28,7 +28,6 @@ class Hollywood(models.Model):
     created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     update = models.DateTimeField(auto_now=True, null=True, blank=True)
 
-
     def __str__(self):
         return self.holly.movie_name + ' - ' + self.holly.movie_year + ' - ' + self.country
 
